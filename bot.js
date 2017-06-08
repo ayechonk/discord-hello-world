@@ -22,12 +22,13 @@ client.Dispatcher.on(Events.MESSAGE_CREATE, e => {
     } else {
         if (message.startsWith("//")) {
             var command = message.substring(2);
-            var resp;
+            var resp = "```md\r\n";
             switch (command) {
                 case "help":
-                    resp = "its midnight";
+                    resp += "its md";
                     break;
             }
+            resp += "\r\n```";
             e.message.channel.sendMessage(resp);
         }
     }
