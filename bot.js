@@ -13,7 +13,22 @@ client.Dispatcher.on(Events.GATEWAY_READY, e => {
 });
 
 client.Dispatcher.on(Events.MESSAGE_CREATE, e => {
-    if (e.message.content == 'PING') {
+    var message = e.message.content;
+    if (message == 'PING') {
         e.message.channel.sendMessage('PONG');
+    }
+    if (e.message.author.id == client.User.id) {
+        console.log('its me!');
+    } else {
+        if (message.startsWith("//")) {
+            var command = message.substring(2);
+            var resp;
+            switch (command) {
+                case "help":
+                    resp = "its midnight";
+                    break;
+            }
+            e.message.channel.sendMessage(resp);
+        }
     }
 });
